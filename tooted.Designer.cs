@@ -1,6 +1,6 @@
 ﻿namespace Tooted
 {
-    partial class tooded
+    partial class tooted
     {
         /// <summary>
         ///  Required designer variable.
@@ -36,8 +36,8 @@
             label3 = new Label();
             label4 = new Label();
             cmbKategooria = new ComboBox();
-            this.btnLisaKategooria = new Button();
-            this.btnKustutaKategooria = new Button();
+            btnLisaKategooria = new Button();
+            btnKustutaKategooria = new Button();
             btnOtsi = new Button();
             btnLisa = new Button();
             btnUuenda = new Button();
@@ -121,28 +121,31 @@
             cmbKategooria.Name = "cmbKategooria";
             cmbKategooria.Size = new Size(156, 33);
             cmbKategooria.TabIndex = 9;
+            cmbKategooria.SelectedIndexChanged += cmbKategooria_SelectedIndexChanged;
             // 
             // btnLisaKategooria
             // 
-            this.btnLisaKategooria.Cursor = Cursors.Hand;
-            this.btnLisaKategooria.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 186);
-            this.btnLisaKategooria.Location = new Point(115, 218);
-            this.btnLisaKategooria.Name = "btnLisaKategooria";
-            this.btnLisaKategooria.Size = new Size(105, 55);
-            this.btnLisaKategooria.TabIndex = 10;
-            this.btnLisaKategooria.Text = "Lisa kategooria";
-            this.btnLisaKategooria.UseVisualStyleBackColor = true;
+            btnLisaKategooria.Cursor = Cursors.Hand;
+            btnLisaKategooria.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 186);
+            btnLisaKategooria.Location = new Point(115, 218);
+            btnLisaKategooria.Name = "btnLisaKategooria";
+            btnLisaKategooria.Size = new Size(105, 55);
+            btnLisaKategooria.TabIndex = 10;
+            btnLisaKategooria.Text = "Lisa kategooria";
+            btnLisaKategooria.UseVisualStyleBackColor = true;
+            btnLisaKategooria.Click += btnLisaKategooria_Click;
             // 
             // btnKustutaKategooria
             // 
-            this.btnKustutaKategooria.Cursor = Cursors.Hand;
-            this.btnKustutaKategooria.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 186);
-            this.btnKustutaKategooria.Location = new Point(226, 218);
-            this.btnKustutaKategooria.Name = "btnKustutaKategooria";
-            this.btnKustutaKategooria.Size = new Size(105, 55);
-            this.btnKustutaKategooria.TabIndex = 11;
-            this.btnKustutaKategooria.Text = "Kustuta Kategooria";
-            this.btnKustutaKategooria.UseVisualStyleBackColor = true;
+            btnKustutaKategooria.Cursor = Cursors.Hand;
+            btnKustutaKategooria.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 186);
+            btnKustutaKategooria.Location = new Point(226, 218);
+            btnKustutaKategooria.Name = "btnKustutaKategooria";
+            btnKustutaKategooria.Size = new Size(105, 55);
+            btnKustutaKategooria.TabIndex = 11;
+            btnKustutaKategooria.Text = "Kustuta Kategooria";
+            btnKustutaKategooria.UseVisualStyleBackColor = true;
+            btnKustutaKategooria.Click += btnKustutaKategooria_Click;
             // 
             // btnOtsi
             // 
@@ -154,6 +157,7 @@
             btnOtsi.TabIndex = 12;
             btnOtsi.Text = "Otsi Fail";
             btnOtsi.UseVisualStyleBackColor = true;
+            btnOtsi.Click += btnOtsi_Click;
             // 
             // btnLisa
             // 
@@ -165,6 +169,7 @@
             btnLisa.TabIndex = 13;
             btnLisa.Text = "Lisa";
             btnLisa.UseVisualStyleBackColor = true;
+            btnLisa.Click += btnLisa_Click;
             // 
             // btnUuenda
             // 
@@ -176,6 +181,7 @@
             btnUuenda.TabIndex = 14;
             btnUuenda.Text = "Uuenda";
             btnUuenda.UseVisualStyleBackColor = true;
+            btnUuenda.Click += btnUuenda_Click;
             // 
             // btnKustuta
             // 
@@ -187,6 +193,7 @@
             btnKustuta.TabIndex = 15;
             btnKustuta.Text = "Kustuta";
             btnKustuta.UseVisualStyleBackColor = true;
+            btnKustuta.Click += btnKustuta_Click;
             // 
             // picPilt
             // 
@@ -204,8 +211,9 @@
             dataGridTooted.Name = "dataGridTooted";
             dataGridTooted.Size = new Size(637, 205);
             dataGridTooted.TabIndex = 17;
+            dataGridTooted.CellClick += dataGridViewTooted_CellClick;
             // 
-            // tooded
+            // tooted
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -216,8 +224,8 @@
             Controls.Add(btnUuenda);
             Controls.Add(btnLisa);
             Controls.Add(btnOtsi);
-            Controls.Add(this.btnKustutaKategooria);
-            Controls.Add(this.btnLisaKategooria);
+            Controls.Add(btnKustutaKategooria);
+            Controls.Add(btnLisaKategooria);
             Controls.Add(cmbKategooria);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -226,7 +234,7 @@
             Controls.Add(txtHind);
             Controls.Add(txtKogus);
             Controls.Add(txtNimetus);
-            Name = "tooded";
+            Name = "tooted";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)picPilt).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridTooted).EndInit();
