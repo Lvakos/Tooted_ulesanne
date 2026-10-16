@@ -1,4 +1,6 @@
-﻿namespace Tooted
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Tooted
 {
     partial class Form1
     {
@@ -34,7 +36,6 @@
             tabPage2 = new TabPage();
             tabpood.SuspendLayout();
             SuspendLayout();
-            
 
             // Form3
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);

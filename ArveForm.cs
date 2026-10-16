@@ -1,22 +1,24 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using PdfSharpCore.Drawing;
+using PdfSharpCore.Pdf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using PdfSharpCore.Drawing;
-using PdfSharpCore.Pdf;
-using System.Net;
-using System.Net.Mail;
 
 
 namespace Tooted
 {
     public partial class ArveForm : Form
     {
+        private readonly ToodedContext _db;
         List<string> ostukorv = new List<string>();
         public ArveForm()
         {
@@ -33,6 +35,17 @@ namespace Tooted
             string rida = $"{SelectedToode.Toodenimetus} - {SelectedToode.Hind} € - {SelectedToode.Kogus} tk";
             ostukorv.Add(rida);
             listOstukorv.Items.Add(rida);
+        }
+        private void btnArve_Click(object sender, EventArgs e)
+        {
+            if (dataGridTooted.SelectedRows.Count == 0) return;
+
+            int id = (int)dataGridTooted.SelectedRows[0].Cells["Id"].Value;
+            var toode = _db.Toodetabel.Find(id);
+
+            ArveForm arve = new ArveForm();
+            arve.SelectedToode = toode;
+            arve.ShowDialog();
         }
         public Toode SelectedToode { get; set; }
 
@@ -63,6 +76,7 @@ namespace Tooted
 
             MessageBox.Show($"PDF on loodud:\n{failinimi}");
         }
+
 
         private void btnSaadaEmail_Click(object sender, EventArgs e)
         {
@@ -99,5 +113,7 @@ namespace Tooted
                 MessageBox.Show("Viga: " + ex.Message);
             }
         }
+
+        
     }
 }

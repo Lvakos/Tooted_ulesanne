@@ -264,16 +264,5 @@
         private PictureBox picPilt;
         private DataGridView dataGridTooted;
 
-        private void btnArve_Click(object sender, EventArgs e)
-        {
-            if (dataGridTooted.SelectedRows.Count == 0) return;
-
-            int id = (int)dataGridTooted.SelectedRows[0].Cells["Id"].Value;
-            var toode = _db.Toodetabel.Find(id);
-
-            ArveForm arve = new ArveForm();
-            arve.SelectedToode = toode;
-            arve.ShowDialog();
-        }
     }
 }

@@ -31,9 +31,11 @@
         private System.Windows.Forms.Button btnLisaKorvi;
         private System.Windows.Forms.Button btnGenPDF;
         private System.Windows.Forms.Button btnSaadaEmail;
+        private DataGridView dataGridTooted;
 
         private void InitializeComponent()
         {
+
             this.listOstukorv = new System.Windows.Forms.ListBox();
             this.btnLisaKorvi = new System.Windows.Forms.Button();
             this.btnGenPDF = new System.Windows.Forms.Button();
