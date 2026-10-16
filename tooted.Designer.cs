@@ -44,8 +44,10 @@
             btnKustuta = new Button();
             picPilt = new PictureBox();
             dataGridTooted = new DataGridView();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)picPilt).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridTooted).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // txtNimetus
@@ -125,74 +127,86 @@
             // 
             // btnLisaKategooria
             // 
+            btnLisaKategooria.BackColor = Color.FromArgb(255, 128, 0);
             btnLisaKategooria.Cursor = Cursors.Hand;
             btnLisaKategooria.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 186);
+            btnLisaKategooria.ForeColor = Color.White;
             btnLisaKategooria.Location = new Point(115, 218);
             btnLisaKategooria.Name = "btnLisaKategooria";
             btnLisaKategooria.Size = new Size(105, 55);
             btnLisaKategooria.TabIndex = 10;
             btnLisaKategooria.Text = "Lisa kategooria";
-            btnLisaKategooria.UseVisualStyleBackColor = true;
+            btnLisaKategooria.UseVisualStyleBackColor = false;
             btnLisaKategooria.Click += btnLisaKategooria_Click;
             // 
             // btnKustutaKategooria
             // 
+            btnKustutaKategooria.BackColor = Color.FromArgb(255, 128, 0);
             btnKustutaKategooria.Cursor = Cursors.Hand;
             btnKustutaKategooria.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 186);
+            btnKustutaKategooria.ForeColor = Color.White;
             btnKustutaKategooria.Location = new Point(226, 218);
             btnKustutaKategooria.Name = "btnKustutaKategooria";
             btnKustutaKategooria.Size = new Size(105, 55);
             btnKustutaKategooria.TabIndex = 11;
             btnKustutaKategooria.Text = "Kustuta Kategooria";
-            btnKustutaKategooria.UseVisualStyleBackColor = true;
+            btnKustutaKategooria.UseVisualStyleBackColor = false;
             btnKustutaKategooria.Click += btnKustutaKategooria_Click;
             // 
             // btnOtsi
             // 
+            btnOtsi.BackColor = Color.FromArgb(255, 128, 0);
             btnOtsi.Cursor = Cursors.Hand;
             btnOtsi.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 186);
+            btnOtsi.ForeColor = Color.White;
             btnOtsi.Location = new Point(337, 218);
             btnOtsi.Name = "btnOtsi";
             btnOtsi.Size = new Size(105, 35);
             btnOtsi.TabIndex = 12;
             btnOtsi.Text = "Otsi Fail";
-            btnOtsi.UseVisualStyleBackColor = true;
+            btnOtsi.UseVisualStyleBackColor = false;
             btnOtsi.Click += btnOtsi_Click;
             // 
             // btnLisa
             // 
+            btnLisa.BackColor = Color.FromArgb(255, 128, 0);
             btnLisa.Cursor = Cursors.Hand;
             btnLisa.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 186);
+            btnLisa.ForeColor = Color.White;
             btnLisa.Location = new Point(448, 218);
             btnLisa.Name = "btnLisa";
             btnLisa.Size = new Size(105, 35);
             btnLisa.TabIndex = 13;
             btnLisa.Text = "Lisa";
-            btnLisa.UseVisualStyleBackColor = true;
+            btnLisa.UseVisualStyleBackColor = false;
             btnLisa.Click += btnLisa_Click;
             // 
             // btnUuenda
             // 
+            btnUuenda.BackColor = Color.FromArgb(255, 128, 0);
             btnUuenda.Cursor = Cursors.Hand;
             btnUuenda.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 186);
+            btnUuenda.ForeColor = Color.White;
             btnUuenda.Location = new Point(559, 218);
             btnUuenda.Name = "btnUuenda";
             btnUuenda.Size = new Size(95, 35);
             btnUuenda.TabIndex = 14;
             btnUuenda.Text = "Uuenda";
-            btnUuenda.UseVisualStyleBackColor = true;
+            btnUuenda.UseVisualStyleBackColor = false;
             btnUuenda.Click += btnUuenda_Click;
             // 
             // btnKustuta
             // 
+            btnKustuta.BackColor = Color.FromArgb(255, 128, 0);
             btnKustuta.Cursor = Cursors.Hand;
             btnKustuta.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 186);
+            btnKustuta.ForeColor = Color.White;
             btnKustuta.Location = new Point(660, 218);
             btnKustuta.Name = "btnKustuta";
             btnKustuta.Size = new Size(92, 35);
             btnKustuta.TabIndex = 15;
             btnKustuta.Text = "Kustuta";
-            btnKustuta.UseVisualStyleBackColor = true;
+            btnKustuta.UseVisualStyleBackColor = false;
             btnKustuta.Click += btnKustuta_Click;
             // 
             // picPilt
@@ -213,11 +227,27 @@
             dataGridTooted.TabIndex = 17;
             dataGridTooted.CellClick += dataGridViewTooted_CellClick;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = Properties.Resources.waurma;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.ErrorImage = null;
+            pictureBox1.ImageLocation = "Images\\waurma.png";
+            pictureBox1.InitialImage = null;
+            pictureBox1.Location = new Point(726, 495);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(119, 53);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 18;
+            pictureBox1.TabStop = false;
+            // 
             // tooted
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(857, 496);
+            BackColor = Color.FromArgb(255, 192, 128);
+            ClientSize = new Size(857, 560);
+            Controls.Add(pictureBox1);
             Controls.Add(dataGridTooted);
             Controls.Add(picPilt);
             Controls.Add(btnKustuta);
@@ -240,6 +270,7 @@
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)picPilt).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridTooted).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -263,6 +294,6 @@
         private Button btnKustuta;
         private PictureBox picPilt;
         private DataGridView dataGridTooted;
-
+        private PictureBox pictureBox1;
     }
 }

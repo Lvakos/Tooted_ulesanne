@@ -15,6 +15,13 @@ namespace Tooted
         public Peavorm()
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
+            // Tootehaldus ainult adminile, pood ja arve kõigile
+            btnTooted.Enabled = AktiivneKasutaja.OnAdmin;
+            Text = $"Peamenüü – {AktiivneKasutaja.Nimi} ({AktiivneKasutaja.Roll})";
         }
         private void btnTooted_Click(object sender, EventArgs e)
         {

@@ -17,6 +17,19 @@ namespace Tooted
             _db = new ToodedContext();
             LaeKategooriad();
             LaeTooted();
+            StartPosition = FormStartPosition.CenterScreen;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
+            // Kasutaja saab ainult vaadata
+            if (!AktiivneKasutaja.OnAdmin)
+            {
+                btnLisa.Enabled = false;
+                btnUuenda.Enabled = false;
+                btnKustuta.Enabled = false;
+                btnLisaKategooria.Enabled = false;
+                btnKustutaKategooria.Enabled = false;
+            }
         }
 
         private void LaeKategooriad()

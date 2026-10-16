@@ -20,6 +20,9 @@ namespace Tooted
             InitializeComponent();
             _db = new ToodedContext();
             LaeKategooriadJaPildid();
+            StartPosition = FormStartPosition.CenterScreen;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
         }
         private void LaeKategooriadJaPildid()
         {
@@ -99,5 +102,9 @@ namespace Tooted
             }
         }
 
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

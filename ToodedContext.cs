@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Tooted
 {
@@ -11,6 +6,7 @@ namespace Tooted
     {
         public DbSet<Toode> Toodetabel { get; set; }
         public DbSet<Kategooria> Kategooriatabel { get; set; }
+        public DbSet<Kasutaja> Kasutajad { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -22,6 +18,7 @@ namespace Tooted
         {
             modelBuilder.Entity<Kategooria>().ToTable("Kategooriatabel");
             modelBuilder.Entity<Toode>().ToTable("Toodetabel");
+            modelBuilder.Entity<Kasutaja>().ToTable("Kasutajad");
         }
     }
 }
