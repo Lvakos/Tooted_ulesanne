@@ -15,7 +15,7 @@ namespace Tooted
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                @"Server=(localdb)\MSSQLLocalDB;Database=TootedDB;Trusted_Connection=True;");
+                @"Server=(localdb)\MSSQLLocalDB;Database=TootedDBB;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

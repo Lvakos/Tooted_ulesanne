@@ -11,7 +11,6 @@ namespace Tooted
     {
         private readonly ToodedContext _db;
         private string valitudPilt;
-
         public tooted()
         {
             InitializeComponent();
