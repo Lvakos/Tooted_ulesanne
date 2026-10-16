@@ -19,7 +19,6 @@ namespace Tooted
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
 
-            // Tootehaldus ainult adminile, pood ja arve kõigile
             btnTooted.Enabled = AktiivneKasutaja.OnAdmin;
             Text = $"Peamenüü – {AktiivneKasutaja.Nimi} ({AktiivneKasutaja.Roll})";
         }
@@ -39,6 +38,22 @@ namespace Tooted
         {
             ArveForm arve = new ArveForm();
             arve.ShowDialog();
+        }
+
+        private void github_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = "https://github.com/Lvakos/Tooted_ulesanne",
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Brauserit ei saanud avada: " + ex.Message);
+            }
         }
     }
 }

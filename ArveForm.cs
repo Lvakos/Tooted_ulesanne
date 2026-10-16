@@ -10,7 +10,6 @@ using System.Net;
 using System.Net.Mail;
 using System.Windows.Forms;
 
-
 namespace Tooted
 {
     public partial class ArveForm : Form
@@ -18,7 +17,6 @@ namespace Tooted
         private readonly ToodedContext _db = new ToodedContext();
         List<OstukorviRida> ostukorv = new List<OstukorviRida>();
 
-        // Valitud toode = see, mis on listTooted'is valitud
         public Toode SelectedToode => listTooted.SelectedItem as Toode;
 
         public ArveForm()
@@ -31,7 +29,6 @@ namespace Tooted
             MaximizeBox = false;
         }
 
-        // Laeb kõik tooted andmebaasist listTooted'i
         private void LaeTooted()
         {
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -42,33 +39,13 @@ namespace Tooted
             listTooted.DisplayMember = "Toodenimetus";
         }
 
-        // Näitab valitud toote pilti, nime ja infot
         private void NaitaToodet(Toode toode)
         {
             toodeNimi.Text = toode.Toodenimetus;
             toodeKirjeldus.Text = $"{toode.Hind:0.00} € | {toode.Kogus} tk | {toode.Kategooria?.Kategooria_nimetus}";
 
             pictureBox1.Image?.Dispose();
-            pictureBox1.Image = null;
-
-            if (string.IsNullOrEmpty(toode.Pilt)) return;
-
-            // Sama kaust nagu tooted.cs-is: bin\...\Images või projekti Images
-            string[] kohad =
-            {
-                Path.Combine("Images", toode.Pilt),
-                Path.Combine(@"..\..\..\Images", toode.Pilt)
-            };
-
-            foreach (string tee in kohad)
-            {
-                if (File.Exists(tee))
-                {
-                    // Laeme mälu kaudu, et fail ei jääks lukku
-                    pictureBox1.Image = Image.FromStream(new MemoryStream(File.ReadAllBytes(tee)));
-                    break;
-                }
-            }
+            pictureBox1.Image = Pildid.Lae(toode.Pilt);
         }
 
         private void listTooted_SelectedIndexChanged(object sender, EventArgs e)
@@ -94,7 +71,6 @@ namespace Tooted
                 return;
             }
 
-            // Kui sama toode on juba korvis, suurendame kogust
             var olemas = ostukorv.FirstOrDefault(r => r.Toode.Id == SelectedToode.Id);
             int kokkuKorvis = (olemas?.Kogus ?? 0) + kogus;
 
@@ -120,7 +96,6 @@ namespace Tooted
             UuendaOstukorvi();
         }
 
-        // Topeltklõps ostukorvi real eemaldab selle
         private void listOstukorv_DoubleClick(object sender, EventArgs e)
         {
             if (listOstukorv.SelectedItem is not OstukorviRida rida) return;
@@ -190,7 +165,6 @@ namespace Tooted
             MessageBox.Show($"PDF on loodud:\n{failinimi}");
         }
 
-
         private void btnSaadaEmail_Click(object sender, EventArgs e)
         {
             if (!Directory.Exists("Arved") || Directory.GetFiles("Arved").Length == 0)
@@ -199,10 +173,8 @@ namespace Tooted
                 return;
             }
 
-            string email = Microsoft.VisualBasic.Interaction.InputBox(
-                "Sisesta e-mail", "Saaja", "nimi@example.com");
-
-            if (string.IsNullOrEmpty(email)) return;
+            if (!KusiEmailiAndmed(out string saatja, out string appParool, out string saaja))
+                return;
 
             string pdfPath = Directory.GetFiles("Arved")
                 .OrderByDescending(f => f)
@@ -210,16 +182,18 @@ namespace Tooted
 
             try
             {
-                var mail = new MailMessage();
-                mail.From = new MailAddress("sinu_gmail@gmail.com");
-                mail.To.Add(email);
+                Cursor = Cursors.WaitCursor;
+
+                using var mail = new MailMessage();
+                mail.From = new MailAddress(saatja);
+                mail.To.Add(saaja);
                 mail.Subject = "Arve";
                 mail.Body = "Arve on manuses.";
                 mail.Attachments.Add(new Attachment(pdfPath));
 
-                var smtp = new SmtpClient("smtp.gmail.com", 587)
+                using var smtp = new SmtpClient("smtp.gmail.com", 587)
                 {
-                    Credentials = new NetworkCredential("sinu_gmail@gmail.com", "parool"),
+                    Credentials = new NetworkCredential(saatja, appParool),
                     EnableSsl = true
                 };
 
@@ -227,9 +201,83 @@ namespace Tooted
 
                 MessageBox.Show("Arve saadetud!");
             }
+            catch (SmtpException ex)
+            {
+                MessageBox.Show("Saatmine ebaõnnestus. Kontrolli saatja e-maili ja app passwordit.\n\n" + ex.Message);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show("Viga: " + ex.Message);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private bool KusiEmailiAndmed(out string saatja, out string appParool, out string saaja)
+        {
+            saatja = appParool = saaja = "";
+
+            using Form aken = new Form();
+            aken.Text = "Saada arve e-mailiga";
+            aken.StartPosition = FormStartPosition.CenterParent;
+            aken.ClientSize = new Size(340, 260);
+            aken.FormBorderStyle = FormBorderStyle.FixedDialog;
+            aken.MaximizeBox = false;
+            aken.MinimizeBox = false;
+
+            Label lblSaatja = new Label { Text = "Saatja e-mail (Gmail):", Location = new Point(15, 15), AutoSize = true };
+            TextBox txtSaatja = new TextBox { Location = new Point(15, 35), Width = 310 };
+
+            Label lblParool = new Label { Text = "App password:", Location = new Point(15, 70), AutoSize = true };
+            TextBox txtParool = new TextBox { Location = new Point(15, 90), Width = 310, UseSystemPasswordChar = true };
+
+            Label lblSaaja = new Label { Text = "Saaja e-mail:", Location = new Point(15, 125), AutoSize = true };
+            TextBox txtSaaja = new TextBox { Location = new Point(15, 145), Width = 310 };
+
+            Button btnSaada = new Button { Text = "Saada", Location = new Point(15, 200), Width = 150 };
+            Button btnLoobu = new Button { Text = "Loobu", Location = new Point(175, 200), Width = 150, DialogResult = DialogResult.Cancel };
+
+            btnSaada.Click += (s, args) =>
+            {
+                if (!OnEmail(txtSaatja.Text) || !OnEmail(txtSaaja.Text))
+                {
+                    MessageBox.Show("Sisesta korrektne saatja ja saaja e-mail!");
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtParool.Text))
+                {
+                    MessageBox.Show("Sisesta app password!");
+                    return;
+                }
+
+                aken.DialogResult = DialogResult.OK;
+            };
+
+            aken.Controls.AddRange(new Control[] { lblSaatja, txtSaatja, lblParool, txtParool, lblSaaja, txtSaaja, btnSaada, btnLoobu });
+            aken.AcceptButton = btnSaada;
+            aken.CancelButton = btnLoobu;
+
+            if (aken.ShowDialog(this) != DialogResult.OK)
+                return false;
+
+            saatja = txtSaatja.Text.Trim();
+            appParool = txtParool.Text.Replace(" ", "");
+            saaja = txtSaaja.Text.Trim();
+            return true;
+        }
+
+        private static bool OnEmail(string tekst)
+        {
+            try
+            {
+                return new MailAddress(tekst.Trim()).Address == tekst.Trim();
+            }
+            catch
+            {
+                return false;
             }
         }
     }

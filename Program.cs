@@ -4,9 +4,6 @@ namespace Tooted
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
@@ -23,7 +20,6 @@ namespace Tooted
                 return;
             }
 
-            // Kõigepealt login, siis peamenüü
             using (var login = new LoginForm())
             {
                 if (login.ShowDialog() != DialogResult.OK)
@@ -33,7 +29,6 @@ namespace Tooted
             Application.Run(new Peavorm());
         }
 
-        // Loob andmebaasi (rakendab migratsioonid) ja lisab vaikimisi kasutajad
         private static void LooAndmebaasJaKasutajad()
         {
             using var db = new ToodedContext();

@@ -4,15 +4,8 @@ namespace Tooted
 {
     partial class Form1
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -24,10 +17,6 @@ namespace Tooted
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             tabpood = new TabControl();
@@ -37,9 +26,6 @@ namespace Tooted
             tabpood.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-            // 
-            // tabpood
-            // 
             tabpood.Controls.Add(tabPage1);
             tabpood.Controls.Add(tabPage2);
             tabpood.Font = new Font("Segoe UI", 12F);
@@ -48,9 +34,6 @@ namespace Tooted
             tabpood.SelectedIndex = 0;
             tabpood.Size = new Size(900, 532);
             tabpood.TabIndex = 0;
-            // 
-            // tabPage1
-            // 
             tabPage1.BackColor = Color.FromArgb(255, 128, 0);
             tabPage1.Location = new Point(4, 30);
             tabPage1.Name = "tabPage1";
@@ -59,9 +42,6 @@ namespace Tooted
             tabPage1.TabIndex = 0;
             tabPage1.Text = "tabPage1";
             tabPage1.Click += tabPage1_Click;
-            // 
-            // tabPage2
-            // 
             tabPage2.BackColor = Color.FromArgb(255, 128, 0);
             tabPage2.Font = new Font("Segoe UI", 12F);
             tabPage2.ForeColor = Color.White;
@@ -71,9 +51,6 @@ namespace Tooted
             tabPage2.Size = new Size(892, 572);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
-            // 
-            // pictureBox1
-            // 
             pictureBox1.BackgroundImage = Properties.Resources.waurma;
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox1.ErrorImage = null;
@@ -85,9 +62,6 @@ namespace Tooted
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 4;
             pictureBox1.TabStop = false;
-            // 
-            // Form1
-            // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 192, 128);

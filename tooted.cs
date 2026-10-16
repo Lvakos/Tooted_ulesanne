@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+ï»¿using Microsoft.EntityFrameworkCore;
 using System;
 using System.IO;
 using System.Linq;
@@ -6,22 +6,27 @@ using System.Windows.Forms;
 
 namespace Tooted
 {
-
     public partial class tooted : Form
     {
         private readonly ToodedContext _db;
-        private string valitudPilt;
+        private string? valitudPilt;
         public tooted()
         {
             InitializeComponent();
             _db = new ToodedContext();
             LaeKategooriad();
             LaeTooted();
+
+            dataGridTooted.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridTooted.MultiSelect = false;
+            dataGridTooted.ReadOnly = true;
+            dataGridTooted.AllowUserToAddRows = false;
+            picPilt.SizeMode = PictureBoxSizeMode.Zoom;
+
             StartPosition = FormStartPosition.CenterScreen;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
 
-            // Kasutaja saab ainult vaadata
             if (!AktiivneKasutaja.OnAdmin)
             {
                 btnLisa.Enabled = false;
@@ -63,30 +68,81 @@ namespace Tooted
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 valitudPilt = ofd.FileName;
-                picPilt.Image = Image.FromFile(valitudPilt);
+                NaitaPilti(Pildid.LaeFailist(valitudPilt));
             }
+        }
+
+        private void NaitaPilti(Image? pilt)
+        {
+            picPilt.Image?.Dispose();
+            picPilt.Image = pilt;
+        }
+
+        private void TuhjendaVorm()
+        {
+            txtNimetus.Clear();
+            txtKogus.Clear();
+            txtHind.Clear();
+            valitudPilt = null;
+            NaitaPilti(null);
+            dataGridTooted.ClearSelection();
+        }
+
+        private bool LoeVorm(out int kogus, out float hind)
+        {
+            hind = 0;
+
+            if (string.IsNullOrWhiteSpace(txtNimetus.Text))
+            {
+                MessageBox.Show("Sisesta toote nimetus!");
+                kogus = 0;
+                return false;
+            }
+
+            if (!int.TryParse(txtKogus.Text, out kogus) || kogus < 0)
+            {
+                MessageBox.Show("Vale kogus!");
+                return false;
+            }
+
+            if (!float.TryParse(txtHind.Text.Replace(',', '.'), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out hind) || hind < 0)
+            {
+                MessageBox.Show("Vale hind!");
+                return false;
+            }
+
+            if (cmbKategooria.SelectedValue == null)
+            {
+                MessageBox.Show("Vali kategooria!");
+                return false;
+            }
+
+            return true;
+        }
+
+        private int? ValitudId()
+        {
+            if (dataGridTooted.SelectedRows.Count == 0) return null;
+            return dataGridTooted.SelectedRows[0].Cells["Id"].Value as int?;
         }
 
         private void btnLisa_Click(object sender, EventArgs e)
         {
+            if (!LoeVorm(out int kogus, out float hind)) return;
+
             var uus = new Toode
             {
-                Toodenimetus = txtNimetus.Text,
-                Kogus = int.Parse(txtKogus.Text),
-                Hind = float.Parse(txtHind.Text),
+                Toodenimetus = txtNimetus.Text.Trim(),
+                Kogus = kogus,
+                Hind = hind,
                 KategooriaId = (int)cmbKategooria.SelectedValue,
-                Pilt = Path.GetFileName(valitudPilt)
+                Pilt = valitudPilt != null ? Pildid.Salvesta(valitudPilt) : ""
             };
-
-            // kopeerime pildi projekti kausta
-            if (!string.IsNullOrEmpty(valitudPilt))
-            {
-                File.Copy(valitudPilt, Path.Combine(@"..\..\..\Images", uus.Pilt), true);
-            }
 
             _db.Toodetabel.Add(uus);
             _db.SaveChanges();
             LaeTooted();
+            TuhjendaVorm();
         }
 
         private void btnLisaKategooria_Click(object sender, EventArgs e)
@@ -262,7 +318,7 @@ namespace Tooted
                 {
                     MessageBox.Show(
                         "Selles kategoorias on tooteid. " +
-                        "Kustuta või muuda kõigepealt nende toodete kategooriat."
+                        "Kustuta vÃµi muuda kÃµigepealt nende toodete kategooriat."
                     );
                     return;
                 }
@@ -310,60 +366,79 @@ namespace Tooted
         {
             if (e.RowIndex < 0) return;
 
-            txtNimetus.Text = dataGridTooted.Rows[e.RowIndex].Cells["Toodenimetus"].Value.ToString();
-            txtKogus.Text = dataGridTooted.Rows[e.RowIndex].Cells["Kogus"].Value.ToString();
-            txtHind.Text = dataGridTooted.Rows[e.RowIndex].Cells["Hind"].Value.ToString();
+            var rida = dataGridTooted.Rows[e.RowIndex];
 
-            string pilt = dataGridTooted.Rows[e.RowIndex].Cells["Pilt"].Value?.ToString();
+            txtNimetus.Text = rida.Cells["Toodenimetus"].Value?.ToString();
+            txtKogus.Text = rida.Cells["Kogus"].Value?.ToString();
+            txtHind.Text = rida.Cells["Hind"].Value?.ToString();
 
-            if (!string.IsNullOrEmpty(pilt) && File.Exists(Path.Combine("Images", pilt)))
-                picPilt.Image = Image.FromFile(Path.Combine("Images", pilt));
+            int id = (int)rida.Cells["Id"].Value;
+            var toode = _db.Toodetabel.Find(id);
+            if (toode != null)
+                cmbKategooria.SelectedValue = toode.KategooriaId;
+
+            valitudPilt = null;
+            NaitaPilti(Pildid.Lae(rida.Cells["Pilt"].Value?.ToString()));
         }
 
         private void btnUuenda_Click(object sender, EventArgs e)
         {
-            int id = (int)dataGridTooted.SelectedRows[0].Cells["Id"].Value;
+            int? id = ValitudId();
+            if (id == null)
+            {
+                MessageBox.Show("Vali tabelist toode!");
+                return;
+            }
 
-            var toode = _db.Toodetabel.Find(id);
+            if (!LoeVorm(out int kogus, out float hind)) return;
 
-            toode.Toodenimetus = txtNimetus.Text;
-            toode.Kogus = int.Parse(txtKogus.Text);
-            toode.Hind = float.Parse(txtHind.Text);
+            var toode = _db.Toodetabel.Find(id.Value);
+            if (toode == null) return;
+
+            toode.Toodenimetus = txtNimetus.Text.Trim();
+            toode.Kogus = kogus;
+            toode.Hind = hind;
             toode.KategooriaId = (int)cmbKategooria.SelectedValue;
 
             if (valitudPilt != null)
-            {
-                toode.Pilt = Path.GetFileName(valitudPilt);
-                File.Copy(valitudPilt, Path.Combine("Images", toode.Pilt), true);
-            }
+                toode.Pilt = Pildid.Salvesta(valitudPilt);
 
             _db.SaveChanges();
             LaeTooted();
+            TuhjendaVorm();
         }
 
         private void btnKustuta_Click(object sender, EventArgs e)
         {
-            int id = (int)dataGridTooted.SelectedRows[0].Cells["Id"].Value;
+            int? id = ValitudId();
+            if (id == null)
+            {
+                MessageBox.Show("Vali tabelist toode!");
+                return;
+            }
 
-            var toode = _db.Toodetabel.Find(id);
+            var toode = _db.Toodetabel.Find(id.Value);
+            if (toode == null) return;
+
+            if (MessageBox.Show($"Kas kustutada \"{toode.Toodenimetus}\"?", "Kinnitamine",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
 
             _db.Toodetabel.Remove(toode);
             _db.SaveChanges();
             LaeTooted();
+            TuhjendaVorm();
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
-
         }
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
 
         private void cmbKategooria_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
     }
 }

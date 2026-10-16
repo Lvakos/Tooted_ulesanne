@@ -18,10 +18,10 @@ namespace Tooted
         {
             using var db = new ToodedContext();
 
-            string email = txtEmail.Text.Trim();
+            string email = txtEmail.Text.Trim().ToLower();
             string parool = txtParool.Text;
 
-            var kasutaja = db.Kasutajad.FirstOrDefault(k => k.Email == email);
+            var kasutaja = db.Kasutajad.FirstOrDefault(k => k.Email.ToLower() == email);
 
             if (kasutaja == null)
             {
@@ -35,13 +35,24 @@ namespace Tooted
                 return;
             }
 
-            // roll salvestatakse globaalselt
             AktiivneKasutaja.Nimi = kasutaja.Nimi;
             AktiivneKasutaja.Roll = kasutaja.Roll;
 
-            // Program.cs avab peale seda peamenüü
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void btnRegistreeru_Click(object sender, EventArgs e)
+        {
+            using var reg = new RegistreerimisForm();
+
+            if (reg.ShowDialog(this) == DialogResult.OK)
+            {
+                txtEmail.Text = reg.RegistreeritudEmail;
+                txtParool.Clear();
+                txtParool.Focus();
+                lblVeateade.Text = "";
+            }
         }
     }
 }

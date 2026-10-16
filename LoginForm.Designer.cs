@@ -23,45 +23,31 @@ namespace Tooted
             txtParool = new TextBox();
             btnLogin = new Button();
             lblVeateade = new Label();
+            btnRegistreeru = new Button();
             pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-            // 
-            // lblEmail
-            // 
             lblEmail.AutoSize = true;
             lblEmail.Location = new Point(30, 25);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(41, 15);
             lblEmail.TabIndex = 0;
             lblEmail.Text = "E-mail";
-            // 
-            // txtEmail
-            // 
             txtEmail.Location = new Point(30, 45);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(240, 23);
             txtEmail.TabIndex = 0;
-            // 
-            // lblParool
-            // 
             lblParool.AutoSize = true;
             lblParool.Location = new Point(30, 80);
             lblParool.Name = "lblParool";
             lblParool.Size = new Size(41, 15);
             lblParool.TabIndex = 1;
             lblParool.Text = "Parool";
-            // 
-            // txtParool
-            // 
             txtParool.Location = new Point(30, 100);
             txtParool.Name = "txtParool";
             txtParool.PasswordChar = '*';
             txtParool.Size = new Size(240, 23);
             txtParool.TabIndex = 1;
-            // 
-            // btnLogin
-            // 
             btnLogin.BackColor = Color.FromArgb(255, 128, 0);
             btnLogin.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 186);
             btnLogin.ForeColor = Color.White;
@@ -72,37 +58,38 @@ namespace Tooted
             btnLogin.Text = "Logi sisse";
             btnLogin.UseVisualStyleBackColor = false;
             btnLogin.Click += btnLogin_Click;
-            // 
-            // lblVeateade
-            // 
             lblVeateade.AutoSize = true;
             lblVeateade.ForeColor = Color.Red;
-            lblVeateade.Location = new Point(30, 185);
+            lblVeateade.Location = new Point(30, 222);
             lblVeateade.Name = "lblVeateade";
             lblVeateade.Size = new Size(0, 15);
             lblVeateade.TabIndex = 3;
-            // 
-            // pictureBox1
-            // 
+            btnRegistreeru.BackColor = Color.White;
+            btnRegistreeru.Cursor = Cursors.Hand;
+            btnRegistreeru.ForeColor = Color.FromArgb(255, 128, 0);
+            btnRegistreeru.Location = new Point(30, 183);
+            btnRegistreeru.Name = "btnRegistreeru";
+            btnRegistreeru.Size = new Size(240, 30);
+            btnRegistreeru.TabIndex = 5;
+            btnRegistreeru.Text = "Pole kontot? Registreeru";
+            btnRegistreeru.UseVisualStyleBackColor = false;
+            btnRegistreeru.Click += btnRegistreeru_Click;
             pictureBox1.BackgroundImage = Properties.Resources.waurma;
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox1.ErrorImage = null;
             pictureBox1.ImageLocation = "Images\\waurma.png";
             pictureBox1.InitialImage = null;
-            pictureBox1.Location = new Point(89, 185);
+            pictureBox1.Location = new Point(89, 245);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(119, 53);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 4;
             pictureBox1.TabStop = false;
-            // 
-            // LoginForm
-            // 
             AcceptButton = btnLogin;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 192, 128);
-            ClientSize = new Size(300, 248);
+            ClientSize = new Size(300, 310);
             Controls.Add(pictureBox1);
             Controls.Add(lblEmail);
             Controls.Add(txtEmail);
@@ -110,6 +97,7 @@ namespace Tooted
             Controls.Add(txtParool);
             Controls.Add(btnLogin);
             Controls.Add(lblVeateade);
+            Controls.Add(btnRegistreeru);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             Name = "LoginForm";
@@ -129,5 +117,6 @@ namespace Tooted
         private Button btnLogin;
         private Label lblVeateade;
         private PictureBox pictureBox1;
+        private Button btnRegistreeru;
     }
 }

@@ -12,7 +12,6 @@ namespace Tooted
 {
     public partial class Form1 : Form
     {
-
         private readonly ToodedContext _db;
 
         public Form1()
@@ -32,11 +31,9 @@ namespace Tooted
 
             foreach (var kat in kategooriad)
             {
-                // Loo uus tab selle kategooria jaoks
                 var page = new TabPage(kat.Kategooria_nimetus);
                 page.AutoScroll = true;
 
-                // Too kategooria tooted andmebaasist
                 var tooted = _db.Toodetabel
                                 .Where(t => t.KategooriaId == kat.Id)
                                 .ToList();
@@ -47,13 +44,11 @@ namespace Tooted
 
                 foreach (var t in tooted)
                 {
-                    // Loo paneel iga toote jaoks
                     Panel p = new Panel();
                     p.Width = 150;
                     p.Height = 200;
                     p.BorderStyle = BorderStyle.FixedSingle;
 
-                    // Pildikast
                     PictureBox pb = new PictureBox();
                     pb.Width = 140;
                     pb.Height = 140;
@@ -64,12 +59,8 @@ namespace Tooted
                         MessageBox.Show($"Toode: {t.Toodenimetus}\nHind: {t.Hind}€");
                     };
 
-                    // lae pilt failist, kui olemas
-                    var piltPath = Path.Combine("../../../Images", t.Pilt ?? "puudub.png");
-                    if (File.Exists(piltPath))
-                        pb.Image = Image.FromFile(piltPath);
+                    pb.Image = Pildid.Lae(t.Pilt);
 
-                    // Nimetus
                     Label lbl = new Label();
                     lbl.Text = t.Toodenimetus;
                     lbl.AutoSize = false;
@@ -77,19 +68,15 @@ namespace Tooted
                     lbl.Location = new Point(5, 150);
                     lbl.Width = 140;
 
-                    // Lisa elemendid paneelile
                     p.Controls.Add(pb);
                     p.Controls.Add(lbl);
 
-                    // Paiguta paneel TabPage-s
                     p.Location = new Point(x, y);
                     page.Controls.Add(p);
 
-                    // Järgmise positsioon
                     x += 160;
                     count++;
 
-                    // iga 4 pildi järel uus rida
                     if (count % 4 == 0)
                     {
                         x = 10;
@@ -97,14 +84,12 @@ namespace Tooted
                     }
                 }
 
-                // Lisa TabPage TabControli sisse
                 tabpood.TabPages.Add(page);
             }
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
         {
-
         }
     }
 }

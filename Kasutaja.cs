@@ -6,6 +6,6 @@ namespace Tooted
         public string Nimi { get; set; }
         public string Email { get; set; }
         public string ParoolHash { get; set; }
-        public string Roll { get; set; } // "admin" või "kasutaja"
+        public string Roll { get; set; }
     }
 }

@@ -2,15 +2,8 @@
 {
     partial class Peavorm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,10 +15,6 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private Button btnTooted;
         private Button btnPood;
         private Button btnArve;
@@ -39,9 +28,6 @@
             github = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-            // 
-            // btnTooted
-            // 
             btnTooted.BackColor = Color.FromArgb(255, 128, 0);
             btnTooted.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnTooted.ForeColor = SystemColors.ButtonHighlight;
@@ -52,9 +38,6 @@
             btnTooted.Text = "Tootehaldus";
             btnTooted.UseVisualStyleBackColor = false;
             btnTooted.Click += btnTooted_Click;
-            // 
-            // btnPood
-            // 
             btnPood.BackColor = Color.FromArgb(255, 128, 0);
             btnPood.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnPood.ForeColor = SystemColors.ButtonHighlight;
@@ -65,9 +48,6 @@
             btnPood.Text = "Pood";
             btnPood.UseVisualStyleBackColor = false;
             btnPood.Click += btnPood_Click;
-            // 
-            // btnArve
-            // 
             btnArve.BackColor = Color.FromArgb(255, 128, 0);
             btnArve.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnArve.ForeColor = SystemColors.ButtonHighlight;
@@ -78,9 +58,6 @@
             btnArve.Text = "Arve";
             btnArve.UseVisualStyleBackColor = false;
             btnArve.Click += btnArve_Click;
-            // 
-            // pictureBox1
-            // 
             pictureBox1.BackgroundImage = Properties.Resources.waurma;
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox1.ErrorImage = null;
@@ -92,9 +69,6 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
-            // 
-            // github
-            // 
             github.BackColor = Color.White;
             github.BackgroundImage = Properties.Resources._25231;
             github.BackgroundImageLayout = ImageLayout.Stretch;
@@ -103,9 +77,8 @@
             github.Size = new Size(53, 51);
             github.TabIndex = 4;
             github.UseVisualStyleBackColor = false;
-            // 
-            // Peavorm
-            // 
+            github.Cursor = Cursors.Hand;
+            github.Click += github_Click;
             BackColor = Color.FromArgb(255, 192, 128);
             ClientSize = new Size(493, 273);
             Controls.Add(github);
@@ -118,7 +91,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
-
 
         #endregion
 
