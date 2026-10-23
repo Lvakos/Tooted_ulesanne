@@ -132,6 +132,16 @@ namespace Tooted
                 return;
             }
 
+            // 1. Сначала проверяем, хватает ли товара на складе
+            foreach (var rida in ostukorv)
+            {
+                if (rida.Kogus > rida.Toode.Kogus)
+                {
+                    MessageBox.Show($"Laos pole piisavalt: {rida.Toode.Toodenimetus}");
+                    return;
+                }
+            }
+
             Directory.CreateDirectory("Arved");
 
             string failinimi = $"Arved/Arve_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
@@ -161,6 +171,16 @@ namespace Tooted
                 new XRect(20, y + 20, page.Width, 20), XStringFormats.TopLeft);
 
             document.Save(failinimi);
+
+            foreach (var rida in ostukorv)
+                rida.Toode.Kogus -= rida.Kogus;
+
+            _db.SaveChanges();
+
+            ostukorv.Clear();
+            UuendaOstukorvi();
+            if (SelectedToode != null)
+                NaitaToodet(SelectedToode);
 
             MessageBox.Show($"PDF on loodud:\n{failinimi}");
         }
