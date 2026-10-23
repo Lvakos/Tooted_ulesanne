@@ -32,6 +32,9 @@ namespace Tooted
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
+            // 
+            // lblTooted
+            // 
             lblTooted.AutoSize = true;
             lblTooted.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblTooted.Location = new Point(20, 15);
@@ -39,6 +42,9 @@ namespace Tooted
             lblTooted.Size = new Size(56, 19);
             lblTooted.TabIndex = 0;
             lblTooted.Text = "Tooted";
+            // 
+            // listTooted
+            // 
             listTooted.BackColor = Color.FromArgb(255, 128, 0);
             listTooted.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic);
             listTooted.ForeColor = Color.White;
@@ -48,6 +54,9 @@ namespace Tooted
             listTooted.Size = new Size(220, 277);
             listTooted.TabIndex = 0;
             listTooted.SelectedIndexChanged += listTooted_SelectedIndexChanged;
+            // 
+            // lblOstukorv
+            // 
             lblOstukorv.AutoSize = true;
             lblOstukorv.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblOstukorv.Location = new Point(260, 15);
@@ -55,6 +64,9 @@ namespace Tooted
             lblOstukorv.Size = new Size(237, 19);
             lblOstukorv.TabIndex = 1;
             lblOstukorv.Text = "Ostukorv (topeltklõps = eemalda)";
+            // 
+            // listOstukorv
+            // 
             listOstukorv.BackColor = Color.FromArgb(255, 128, 0);
             listOstukorv.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic);
             listOstukorv.ForeColor = Color.White;
@@ -64,6 +76,9 @@ namespace Tooted
             listOstukorv.Size = new Size(250, 277);
             listOstukorv.TabIndex = 1;
             listOstukorv.DoubleClick += listOstukorv_DoubleClick;
+            // 
+            // lblKokku
+            // 
             lblKokku.AutoSize = true;
             lblKokku.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblKokku.Location = new Point(340, 332);
@@ -71,6 +86,9 @@ namespace Tooted
             lblKokku.Size = new Size(88, 21);
             lblKokku.TabIndex = 2;
             lblKokku.Text = "Kokku: 0 €";
+            // 
+            // btnLisaKorvi
+            // 
             btnLisaKorvi.BackColor = Color.FromArgb(255, 128, 0);
             btnLisaKorvi.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             btnLisaKorvi.Location = new Point(530, 40);
@@ -80,15 +98,21 @@ namespace Tooted
             btnLisaKorvi.Text = "Lisa toode korvi";
             btnLisaKorvi.UseVisualStyleBackColor = false;
             btnLisaKorvi.Click += btnLisaKorvi_Click;
+            // 
+            // btnGenPDF
+            // 
             btnGenPDF.BackColor = Color.FromArgb(255, 128, 0);
             btnGenPDF.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             btnGenPDF.Location = new Point(530, 85);
             btnGenPDF.Name = "btnGenPDF";
             btnGenPDF.Size = new Size(150, 35);
             btnGenPDF.TabIndex = 3;
-            btnGenPDF.Text = "Genereeri PDF";
+            btnGenPDF.Text = "Osta tooted";
             btnGenPDF.UseVisualStyleBackColor = false;
             btnGenPDF.Click += btnGenPDF_Click;
+            // 
+            // btnSaadaEmail
+            // 
             btnSaadaEmail.BackColor = Color.FromArgb(255, 128, 0);
             btnSaadaEmail.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             btnSaadaEmail.Location = new Point(530, 130);
@@ -98,6 +122,9 @@ namespace Tooted
             btnSaadaEmail.Text = "Saada emailiga";
             btnSaadaEmail.UseVisualStyleBackColor = false;
             btnSaadaEmail.Click += btnSaadaEmail_Click;
+            // 
+            // pictureBox1
+            // 
             pictureBox1.BorderStyle = BorderStyle.FixedSingle;
             pictureBox1.Location = new Point(530, 180);
             pictureBox1.Name = "pictureBox1";
@@ -105,18 +132,27 @@ namespace Tooted
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
+            // 
+            // toodeNimi
+            // 
             toodeNimi.AutoSize = true;
             toodeNimi.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             toodeNimi.Location = new Point(530, 305);
             toodeNimi.Name = "toodeNimi";
             toodeNimi.Size = new Size(0, 21);
             toodeNimi.TabIndex = 6;
+            // 
+            // toodeKirjeldus
+            // 
             toodeKirjeldus.AutoSize = true;
             toodeKirjeldus.Font = new Font("Segoe UI", 9F);
             toodeKirjeldus.Location = new Point(530, 330);
             toodeKirjeldus.Name = "toodeKirjeldus";
             toodeKirjeldus.Size = new Size(0, 15);
             toodeKirjeldus.TabIndex = 7;
+            // 
+            // pictureBox2
+            // 
             pictureBox2.BackgroundImage = Properties.Resources.waurma;
             pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox2.ErrorImage = null;
@@ -128,6 +164,9 @@ namespace Tooted
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 8;
             pictureBox2.TabStop = false;
+            // 
+            // ArveForm
+            // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 192, 128);
@@ -146,7 +185,8 @@ namespace Tooted
             Controls.Add(toodeKirjeldus);
             Name = "ArveForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Arve";
+            Text = "Pood";
+            Load += ArveForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);

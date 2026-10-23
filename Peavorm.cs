@@ -28,12 +28,6 @@ namespace Tooted
             f.ShowDialog();
         }
 
-        private void btnPood_Click(object sender, EventArgs e)
-        {
-            Form1 poodForm = new Form1();
-            poodForm.ShowDialog();
-        }
-
         private void btnArve_Click(object sender, EventArgs e)
         {
             ArveForm arve = new ArveForm();

@@ -22,6 +22,8 @@ namespace Tooted
         public ArveForm()
         {
             InitializeComponent();
+            pictureBox1.Cursor = Cursors.Hand;
+            pictureBox1.Click += pictureBox1_Click;
             LaeTooted();
             ArvutaKoguSumma();
             StartPosition = FormStartPosition.CenterScreen;
@@ -37,6 +39,33 @@ namespace Tooted
                 .Include(t => t.Kategooria)
                 .ToList();
             listTooted.DisplayMember = "Toodenimetus";
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image == null) return;
+
+            using Form aken = new Form
+            {
+                Text = SelectedToode?.Toodenimetus ?? "Pilt",
+                StartPosition = FormStartPosition.CenterParent,
+                ClientSize = new Size(800, 600),
+                KeyPreview = true
+            };
+
+            PictureBox suurPilt = new PictureBox
+            {
+                Dock = DockStyle.Fill,
+                SizeMode = PictureBoxSizeMode.Zoom,
+                BackColor = Color.Black,
+                Image = pictureBox1.Image
+            };
+
+            suurPilt.Click += (s, a) => aken.Close();
+            aken.KeyDown += (s, a) => { if (a.KeyCode == Keys.Escape) aken.Close(); };
+
+            aken.Controls.Add(suurPilt);
+            aken.ShowDialog(this);
         }
 
         private void NaitaToodet(Toode toode)
@@ -299,6 +328,11 @@ namespace Tooted
             {
                 return false;
             }
+        }
+
+        private void ArveForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
