@@ -1,4 +1,4 @@
-namespace Tooted
+﻿namespace Tooted
 {
     partial class ArveForm
     {
@@ -18,23 +18,17 @@ namespace Tooted
         private void InitializeComponent()
         {
             lblTooted = new Label();
-            listTooted = new ListBox();
+            tabTooted = new TabControl();
             lblOstukorv = new Label();
             listOstukorv = new ListBox();
             lblKokku = new Label();
-            btnLisaKorvi = new Button();
-            btnGenPDF = new Button();
-            btnSaadaEmail = new Button();
-            pictureBox1 = new PictureBox();
-            toodeNimi = new Label();
-            toodeKirjeldus = new Label();
+            ostaBtn = new Button();
             pictureBox2 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
-            // 
+            //
             // lblTooted
-            // 
+            //
             lblTooted.AutoSize = true;
             lblTooted.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblTooted.Location = new Point(20, 15);
@@ -42,152 +36,91 @@ namespace Tooted
             lblTooted.Size = new Size(56, 19);
             lblTooted.TabIndex = 0;
             lblTooted.Text = "Tooted";
-            // 
-            // listTooted
-            // 
-            listTooted.BackColor = Color.FromArgb(255, 128, 0);
-            listTooted.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic);
-            listTooted.ForeColor = Color.White;
-            listTooted.ItemHeight = 21;
-            listTooted.Location = new Point(20, 40);
-            listTooted.Name = "listTooted";
-            listTooted.Size = new Size(220, 277);
-            listTooted.TabIndex = 0;
-            listTooted.SelectedIndexChanged += listTooted_SelectedIndexChanged;
-            // 
+            //
+            // tabTooted
+            //
+            tabTooted.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            tabTooted.Location = new Point(20, 40);
+            tabTooted.Name = "tabTooted";
+            tabTooted.SelectedIndex = 0;
+            tabTooted.Size = new Size(745, 540);
+            tabTooted.TabIndex = 0;
+            //
             // lblOstukorv
-            // 
+            //
             lblOstukorv.AutoSize = true;
             lblOstukorv.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblOstukorv.Location = new Point(260, 15);
+            lblOstukorv.Location = new Point(785, 15);
             lblOstukorv.Name = "lblOstukorv";
             lblOstukorv.Size = new Size(237, 19);
             lblOstukorv.TabIndex = 1;
             lblOstukorv.Text = "Ostukorv (topeltklõps = eemalda)";
-            // 
+            //
             // listOstukorv
-            // 
+            //
             listOstukorv.BackColor = Color.FromArgb(255, 128, 0);
-            listOstukorv.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic);
+            listOstukorv.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold | FontStyle.Italic);
             listOstukorv.ForeColor = Color.White;
-            listOstukorv.ItemHeight = 21;
-            listOstukorv.Location = new Point(260, 40);
+            listOstukorv.HorizontalScrollbar = true;
+            listOstukorv.ItemHeight = 20;
+            listOstukorv.Location = new Point(785, 40);
             listOstukorv.Name = "listOstukorv";
-            listOstukorv.Size = new Size(250, 277);
+            listOstukorv.Size = new Size(275, 404);
             listOstukorv.TabIndex = 1;
             listOstukorv.DoubleClick += listOstukorv_DoubleClick;
-            // 
+            //
             // lblKokku
-            // 
+            //
             lblKokku.AutoSize = true;
-            lblKokku.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblKokku.Location = new Point(340, 332);
+            lblKokku.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            lblKokku.Location = new Point(785, 455);
             lblKokku.Name = "lblKokku";
-            lblKokku.Size = new Size(88, 21);
+            lblKokku.Size = new Size(98, 25);
             lblKokku.TabIndex = 2;
             lblKokku.Text = "Kokku: 0 €";
-            // 
-            // btnLisaKorvi
-            // 
-            btnLisaKorvi.BackColor = Color.FromArgb(255, 128, 0);
-            btnLisaKorvi.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
-            btnLisaKorvi.Location = new Point(530, 40);
-            btnLisaKorvi.Name = "btnLisaKorvi";
-            btnLisaKorvi.Size = new Size(150, 35);
-            btnLisaKorvi.TabIndex = 2;
-            btnLisaKorvi.Text = "Lisa toode korvi";
-            btnLisaKorvi.UseVisualStyleBackColor = false;
-            btnLisaKorvi.Click += btnLisaKorvi_Click;
-            // 
-            // btnGenPDF
-            // 
-            btnGenPDF.BackColor = Color.FromArgb(255, 128, 0);
-            btnGenPDF.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
-            btnGenPDF.Location = new Point(530, 85);
-            btnGenPDF.Name = "btnGenPDF";
-            btnGenPDF.Size = new Size(150, 35);
-            btnGenPDF.TabIndex = 3;
-            btnGenPDF.Text = "Osta tooted";
-            btnGenPDF.UseVisualStyleBackColor = false;
-            btnGenPDF.Click += btnGenPDF_Click;
-            // 
-            // btnSaadaEmail
-            // 
-            btnSaadaEmail.BackColor = Color.FromArgb(255, 128, 0);
-            btnSaadaEmail.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
-            btnSaadaEmail.Location = new Point(530, 130);
-            btnSaadaEmail.Name = "btnSaadaEmail";
-            btnSaadaEmail.Size = new Size(150, 35);
-            btnSaadaEmail.TabIndex = 4;
-            btnSaadaEmail.Text = "Saada emailiga";
-            btnSaadaEmail.UseVisualStyleBackColor = false;
-            btnSaadaEmail.Click += btnSaadaEmail_Click;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox1.Location = new Point(530, 180);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(150, 120);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 5;
-            pictureBox1.TabStop = false;
-            // 
-            // toodeNimi
-            // 
-            toodeNimi.AutoSize = true;
-            toodeNimi.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            toodeNimi.Location = new Point(530, 305);
-            toodeNimi.Name = "toodeNimi";
-            toodeNimi.Size = new Size(0, 21);
-            toodeNimi.TabIndex = 6;
-            // 
-            // toodeKirjeldus
-            // 
-            toodeKirjeldus.AutoSize = true;
-            toodeKirjeldus.Font = new Font("Segoe UI", 9F);
-            toodeKirjeldus.Location = new Point(530, 330);
-            toodeKirjeldus.Name = "toodeKirjeldus";
-            toodeKirjeldus.Size = new Size(0, 15);
-            toodeKirjeldus.TabIndex = 7;
-            // 
+            //
+            // ostaBtn
+            //
+            ostaBtn.BackColor = Color.FromArgb(255, 128, 0);
+            ostaBtn.Cursor = Cursors.Hand;
+            ostaBtn.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            ostaBtn.ForeColor = Color.White;
+            ostaBtn.Location = new Point(785, 490);
+            ostaBtn.Name = "ostaBtn";
+            ostaBtn.Size = new Size(275, 40);
+            ostaBtn.TabIndex = 3;
+            ostaBtn.Text = "Osta tooted";
+            ostaBtn.UseVisualStyleBackColor = false;
+            ostaBtn.Click += ostaBtn_Click;
+            //
             // pictureBox2
-            // 
+            //
             pictureBox2.BackgroundImage = Properties.Resources.waurma;
             pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox2.ErrorImage = null;
-            pictureBox2.ImageLocation = "Images\\waurma.png";
             pictureBox2.InitialImage = null;
-            pictureBox2.Location = new Point(579, 351);
+            pictureBox2.Location = new Point(941, 538);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(119, 53);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 8;
             pictureBox2.TabStop = false;
-            // 
+            //
             // ArveForm
-            // 
+            //
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 192, 128);
-            ClientSize = new Size(710, 416);
+            ClientSize = new Size(1080, 600);
             Controls.Add(pictureBox2);
             Controls.Add(lblTooted);
-            Controls.Add(listTooted);
+            Controls.Add(tabTooted);
             Controls.Add(lblOstukorv);
             Controls.Add(listOstukorv);
             Controls.Add(lblKokku);
-            Controls.Add(btnLisaKorvi);
-            Controls.Add(btnGenPDF);
-            Controls.Add(btnSaadaEmail);
-            Controls.Add(pictureBox1);
-            Controls.Add(toodeNimi);
-            Controls.Add(toodeKirjeldus);
+            Controls.Add(ostaBtn);
             Name = "ArveForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Pood";
-            Load += ArveForm_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -196,16 +129,11 @@ namespace Tooted
         #endregion
 
         private Label lblTooted;
-        private ListBox listTooted;
+        private TabControl tabTooted;
         private Label lblOstukorv;
         private ListBox listOstukorv;
         private Label lblKokku;
-        private Button btnLisaKorvi;
-        private Button btnGenPDF;
-        private Button btnSaadaEmail;
-        private PictureBox pictureBox1;
-        private Label toodeNimi;
-        private Label toodeKirjeldus;
+        private Button ostaBtn;
         private PictureBox pictureBox2;
     }
 }

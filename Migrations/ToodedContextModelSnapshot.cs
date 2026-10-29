@@ -71,6 +71,33 @@ namespace Tooted.Migrations
                     b.ToTable("Kategooriatabel", (string)null);
                 });
 
+            modelBuilder.Entity("Tooted.OstukorviRida", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("KasutajaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Kogus")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ToodeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ToodeId");
+
+                    b.HasIndex("KasutajaId", "ToodeId")
+                        .IsUnique();
+
+                    b.ToTable("Ostukorv", (string)null);
+                });
+
             modelBuilder.Entity("Tooted.Toode", b =>
                 {
                     b.Property<int>("Id")
@@ -101,6 +128,25 @@ namespace Tooted.Migrations
                     b.HasIndex("KategooriaId");
 
                     b.ToTable("Toodetabel", (string)null);
+                });
+
+            modelBuilder.Entity("Tooted.OstukorviRida", b =>
+                {
+                    b.HasOne("Tooted.Kasutaja", "Kasutaja")
+                        .WithMany()
+                        .HasForeignKey("KasutajaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Tooted.Toode", "Toode")
+                        .WithMany()
+                        .HasForeignKey("ToodeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Kasutaja");
+
+                    b.Navigation("Toode");
                 });
 
             modelBuilder.Entity("Tooted.Toode", b =>

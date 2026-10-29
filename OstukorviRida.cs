@@ -1,8 +1,15 @@
-namespace Tooted
+﻿namespace Tooted
 {
     public class OstukorviRida
     {
+        public int Id { get; set; }
+
+        public int KasutajaId { get; set; }
+        public Kasutaja Kasutaja { get; set; }
+
+        public int ToodeId { get; set; }
         public Toode Toode { get; set; }
+
         public int Kogus { get; set; }
 
         public float Summa => Toode.Hind * Kogus;

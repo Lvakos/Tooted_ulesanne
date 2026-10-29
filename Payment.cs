@@ -1,40 +1,84 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Tooted
 {
+    public class MakseAndmed
+    {
+        public string Nimi { get; init; } = "";
+        public string Aadress { get; init; } = "";
+        public string Email { get; init; } = "";
+        public string Makseviis { get; init; } = "";
+
+        public string KaartArvel => $"{Makseviis}(**** **** **** 1234)";
+    }
+
     public partial class Payment : Form
     {
-        public Payment()
+        public MakseAndmed? Andmed { get; private set; }
+
+        public Payment() : this(0) { }
+
+        public Payment(float summa)
         {
             InitializeComponent();
+            lblSumma.Text = $"Tasuda: {summa:0.00} €";
+
+            foreach (var kaart in new[] { card1, card2, card3 })
+            {
+                kaart.Click += Makseviis_Click;
+                new ToolTip().SetToolTip(kaart, (string)kaart.Tag!);
+            }
+
+            foreach (var tb in new[] { Address, Nimi, Email })
+                tb.TextChanged += (s, e) => errorProvider1.SetError((Control)s!, "");
         }
 
-        private void lblTooted_Click(object sender, EventArgs e)
+        private void Makseviis_Click(object? sender, EventArgs e)
         {
+            if (sender is not Button kaart) return;
 
+            if (!KontrolliAndmed())
+            {
+                MessageBox.Show("Täida kõik andmed korrektselt enne makseviisi valimist.",
+                    "Andmed puudu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Andmed = new MakseAndmed
+            {
+                Nimi = Nimi.Text.Trim(),
+                Aadress = Address.Text.Trim(),
+                Email = Email.Text.Trim(),
+                Makseviis = (string)kaart.Tag!
+            };
+
+            DialogResult = DialogResult.OK;
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private bool KontrolliAndmed()
         {
+            Control? esimeneViga = null;
 
-        }
+            void Viga(Control c, string tekst)
+            {
+                errorProvider1.SetError(c, tekst);
+                esimeneViga ??= c;
+            }
 
-        private void label1_Click_1(object sender, EventArgs e)
-        {
+            foreach (var c in new Control[] { Address, Nimi, Email })
+                errorProvider1.SetError(c, "");
 
-        }
+            if (Address.Text.Trim().Length < 5)
+                Viga(Address, "Sisesta aadress.");
+            if (Nimi.Text.Trim().Length < 2)
+                Viga(Nimi, "Sisesta nimi.");
+            if (!ArveForm.OnEmail(Email.Text))
+                Viga(Email, "Sisesta korrektne e-mail.");
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
+            esimeneViga?.Focus();
+            return esimeneViga == null;
         }
     }
 }

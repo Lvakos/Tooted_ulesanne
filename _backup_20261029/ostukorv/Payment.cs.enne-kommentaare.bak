@@ -1,0 +1,87 @@
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace Tooted
+{
+    /// <summary>Ostja andmed ja valitud makseviis (arve jaoks).</summary>
+    public class MakseAndmed
+    {
+        public string Nimi { get; init; } = "";
+        public string Aadress { get; init; } = "";
+        public string Email { get; init; } = "";
+        public string Makseviis { get; init; } = "";
+
+        /// <summary>Arvel näidatav makse, nt Mastercard(**** **** **** 1234)</summary>
+        public string KaartArvel => $"{Makseviis}(**** **** **** 1234)";
+    }
+
+    public partial class Payment : Form
+    {
+        /// <summary>Täidetakse, kui kasutaja valis makseviisi ja andmed olid korras.</summary>
+        public MakseAndmed? Andmed { get; private set; }
+
+        public Payment() : this(0) { }
+
+        public Payment(float summa)
+        {
+            InitializeComponent();
+            lblSumma.Text = $"Tasuda: {summa:0.00} €";
+
+            foreach (var kaart in new[] { card1, card2, card3 })
+            {
+                kaart.Click += Makseviis_Click;
+                new ToolTip().SetToolTip(kaart, (string)kaart.Tag!);
+            }
+
+            foreach (var tb in new[] { Address, Nimi, Email })
+                tb.TextChanged += (s, e) => errorProvider1.SetError((Control)s!, "");
+        }
+
+        private void Makseviis_Click(object? sender, EventArgs e)
+        {
+            if (sender is not Button kaart) return;
+
+            if (!KontrolliAndmed())
+            {
+                MessageBox.Show("Täida kõik andmed korrektselt enne makseviisi valimist.",
+                    "Andmed puudu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Andmed = new MakseAndmed
+            {
+                Nimi = Nimi.Text.Trim(),
+                Aadress = Address.Text.Trim(),
+                Email = Email.Text.Trim(),
+                Makseviis = (string)kaart.Tag!
+            };
+
+            DialogResult = DialogResult.OK;
+        }
+
+        private bool KontrolliAndmed()
+        {
+            Control? esimeneViga = null;
+
+            void Viga(Control c, string tekst)
+            {
+                errorProvider1.SetError(c, tekst);
+                esimeneViga ??= c;
+            }
+
+            foreach (var c in new Control[] { Address, Nimi, Email })
+                errorProvider1.SetError(c, "");
+
+            if (Address.Text.Trim().Length < 5)
+                Viga(Address, "Sisesta aadress.");
+            if (Nimi.Text.Trim().Length < 2)
+                Viga(Nimi, "Sisesta nimi.");
+            if (!ArveForm.OnEmail(Email.Text))
+                Viga(Email, "Sisesta korrektne e-mail.");
+
+            esimeneViga?.Focus();
+            return esimeneViga == null;
+        }
+    }
+}

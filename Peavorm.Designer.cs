@@ -49,7 +49,7 @@
             btnArve.Name = "btnArve";
             btnArve.Size = new Size(200, 40);
             btnArve.TabIndex = 2;
-            btnArve.Text = "Arve";
+            btnArve.Text = "Pood";
             btnArve.UseVisualStyleBackColor = false;
             btnArve.Click += btnArve_Click;
             // 

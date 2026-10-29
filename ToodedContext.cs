@@ -7,6 +7,7 @@ namespace Tooted
         public DbSet<Toode> Toodetabel { get; set; }
         public DbSet<Kategooria> Kategooriatabel { get; set; }
         public DbSet<Kasutaja> Kasutajad { get; set; }
+        public DbSet<OstukorviRida> Ostukorv { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -19,6 +20,14 @@ namespace Tooted
             modelBuilder.Entity<Kategooria>().ToTable("Kategooriatabel");
             modelBuilder.Entity<Toode>().ToTable("Toodetabel");
             modelBuilder.Entity<Kasutaja>().ToTable("Kasutajad");
+
+            modelBuilder.Entity<OstukorviRida>(b =>
+            {
+                b.ToTable("Ostukorv");
+                b.HasOne(r => r.Kasutaja).WithMany().HasForeignKey(r => r.KasutajaId).OnDelete(DeleteBehavior.Cascade);
+                b.HasOne(r => r.Toode).WithMany().HasForeignKey(r => r.ToodeId).OnDelete(DeleteBehavior.Cascade);
+                b.HasIndex(r => new { r.KasutajaId, r.ToodeId }).IsUnique();
+            });
         }
     }
 }

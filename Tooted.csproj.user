@@ -5,7 +5,7 @@
     <Compile Update="ArveForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Payment.cs">
+    <Compile Update="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="LoginForm.cs">
