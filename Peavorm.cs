@@ -19,8 +19,17 @@ namespace Tooted
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
 
-            btnTooted.Enabled = AktiivneKasutaja.OnAdmin;
-            Text = $"Peamenüü – {AktiivneKasutaja.Nimi} ({AktiivneKasutaja.Roll})";
+            if (AktiivneKasutaja.OnAdmin)
+            {
+                btnTooted.Visible = true;
+                btnArve.Visible = false;
+            }
+            else
+            {
+                btnTooted.Visible = false;
+                btnArve.Visible = true;
+            }
+                Text = $"Peamenüü – {AktiivneKasutaja.Nimi} ({AktiivneKasutaja.Roll})";
         }
         private void btnTooted_Click(object sender, EventArgs e)
         {
