@@ -17,6 +17,7 @@ namespace Tooted
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegistreerimisForm));
             lblNimi = new Label();
             txtNimi = new TextBox();
             lblEmail = new Label();
@@ -29,70 +30,79 @@ namespace Tooted
             btnTagasi = new Button();
             lblVeateade = new Label();
             SuspendLayout();
-            lblNimi.AutoSize = true;
-            lblNimi.Location = new Point(30, 20);
+            // 
+            // lblNimi
+            // 
+            resources.ApplyResources(lblNimi, "lblNimi");
             lblNimi.Name = "lblNimi";
-            lblNimi.Text = "Nimi";
-            txtNimi.Location = new Point(30, 40);
+            lblNimi.Click += lblNimi_Click;
+            // 
+            // txtNimi
+            // 
+            resources.ApplyResources(txtNimi, "txtNimi");
             txtNimi.Name = "txtNimi";
-            txtNimi.Size = new Size(240, 23);
-            txtNimi.TabIndex = 0;
-            lblEmail.AutoSize = true;
-            lblEmail.Location = new Point(30, 75);
+            // 
+            // lblEmail
+            // 
+            resources.ApplyResources(lblEmail, "lblEmail");
             lblEmail.Name = "lblEmail";
-            lblEmail.Text = "E-mail";
-            txtEmail.Location = new Point(30, 95);
+            // 
+            // txtEmail
+            // 
+            resources.ApplyResources(txtEmail, "txtEmail");
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(240, 23);
-            txtEmail.TabIndex = 1;
-            lblParool.AutoSize = true;
-            lblParool.Location = new Point(30, 130);
+            // 
+            // lblParool
+            // 
+            resources.ApplyResources(lblParool, "lblParool");
             lblParool.Name = "lblParool";
-            lblParool.Text = "Parool (vähemalt 6 märki)";
-            txtParool.Location = new Point(30, 150);
+            // 
+            // txtParool
+            // 
+            resources.ApplyResources(txtParool, "txtParool");
             txtParool.Name = "txtParool";
-            txtParool.PasswordChar = '*';
-            txtParool.Size = new Size(240, 23);
-            txtParool.TabIndex = 2;
-            lblKordus.AutoSize = true;
-            lblKordus.Location = new Point(30, 185);
+            // 
+            // lblKordus
+            // 
+            resources.ApplyResources(lblKordus, "lblKordus");
             lblKordus.Name = "lblKordus";
-            lblKordus.Text = "Korda parooli";
-            txtKordus.Location = new Point(30, 205);
+            // 
+            // txtKordus
+            // 
+            resources.ApplyResources(txtKordus, "txtKordus");
             txtKordus.Name = "txtKordus";
-            txtKordus.PasswordChar = '*';
-            txtKordus.Size = new Size(240, 23);
-            txtKordus.TabIndex = 3;
+            // 
+            // btnRegistreeru
+            // 
+            resources.ApplyResources(btnRegistreeru, "btnRegistreeru");
             btnRegistreeru.BackColor = Color.FromArgb(255, 128, 0);
-            btnRegistreeru.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnRegistreeru.ForeColor = Color.White;
-            btnRegistreeru.Location = new Point(30, 245);
             btnRegistreeru.Name = "btnRegistreeru";
-            btnRegistreeru.Size = new Size(240, 35);
-            btnRegistreeru.TabIndex = 4;
-            btnRegistreeru.Text = "Registreeru";
             btnRegistreeru.UseVisualStyleBackColor = false;
             btnRegistreeru.Click += btnRegistreeru_Click;
+            // 
+            // btnTagasi
+            // 
+            resources.ApplyResources(btnTagasi, "btnTagasi");
             btnTagasi.BackColor = Color.White;
             btnTagasi.ForeColor = Color.FromArgb(255, 128, 0);
-            btnTagasi.Location = new Point(30, 288);
             btnTagasi.Name = "btnTagasi";
-            btnTagasi.Size = new Size(240, 28);
-            btnTagasi.TabIndex = 5;
-            btnTagasi.Text = "Tagasi sisselogimisse";
             btnTagasi.UseVisualStyleBackColor = false;
             btnTagasi.Click += btnTagasi_Click;
+            // 
+            // lblVeateade
+            // 
+            resources.ApplyResources(lblVeateade, "lblVeateade");
             lblVeateade.ForeColor = Color.Red;
-            lblVeateade.Location = new Point(30, 322);
             lblVeateade.Name = "lblVeateade";
-            lblVeateade.Size = new Size(240, 36);
-            lblVeateade.Text = "";
+            // 
+            // RegistreerimisForm
+            // 
             AcceptButton = btnRegistreeru;
-            CancelButton = btnTagasi;
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 192, 128);
-            ClientSize = new Size(300, 365);
+            CancelButton = btnTagasi;
             Controls.Add(lblNimi);
             Controls.Add(txtNimi);
             Controls.Add(lblEmail);
@@ -105,7 +115,6 @@ namespace Tooted
             Controls.Add(btnTagasi);
             Controls.Add(lblVeateade);
             Name = "RegistreerimisForm";
-            Text = "Registreerimine";
             ResumeLayout(false);
             PerformLayout();
         }

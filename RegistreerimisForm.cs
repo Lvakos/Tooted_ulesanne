@@ -97,5 +97,10 @@ namespace Tooted
                 return false;
             }
         }
+
+        private void lblNimi_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace Tooted
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             lblEmail = new Label();
             txtEmail = new TextBox();
             lblParool = new Label();
@@ -27,69 +28,67 @@ namespace Tooted
             pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-            lblEmail.AutoSize = true;
-            lblEmail.Location = new Point(30, 25);
+            // 
+            // lblEmail
+            // 
+            resources.ApplyResources(lblEmail, "lblEmail");
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(41, 15);
-            lblEmail.TabIndex = 0;
-            lblEmail.Text = "E-mail";
-            txtEmail.Location = new Point(30, 45);
+            lblEmail.Click += lblEmail_Click;
+            // 
+            // txtEmail
+            // 
+            resources.ApplyResources(txtEmail, "txtEmail");
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(240, 23);
-            txtEmail.TabIndex = 0;
-            lblParool.AutoSize = true;
-            lblParool.Location = new Point(30, 80);
+            // 
+            // lblParool
+            // 
+            resources.ApplyResources(lblParool, "lblParool");
             lblParool.Name = "lblParool";
-            lblParool.Size = new Size(41, 15);
-            lblParool.TabIndex = 1;
-            lblParool.Text = "Parool";
-            txtParool.Location = new Point(30, 100);
+            lblParool.Click += lblParool_Click;
+            // 
+            // txtParool
+            // 
+            resources.ApplyResources(txtParool, "txtParool");
             txtParool.Name = "txtParool";
-            txtParool.PasswordChar = '*';
-            txtParool.Size = new Size(240, 23);
-            txtParool.TabIndex = 1;
+            // 
+            // btnLogin
+            // 
+            resources.ApplyResources(btnLogin, "btnLogin");
             btnLogin.BackColor = Color.FromArgb(255, 128, 0);
-            btnLogin.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 186);
             btnLogin.ForeColor = Color.White;
-            btnLogin.Location = new Point(30, 140);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(240, 35);
-            btnLogin.TabIndex = 2;
-            btnLogin.Text = "Logi sisse";
             btnLogin.UseVisualStyleBackColor = false;
             btnLogin.Click += btnLogin_Click;
-            lblVeateade.AutoSize = true;
+            // 
+            // lblVeateade
+            // 
+            resources.ApplyResources(lblVeateade, "lblVeateade");
             lblVeateade.ForeColor = Color.Red;
-            lblVeateade.Location = new Point(30, 222);
             lblVeateade.Name = "lblVeateade";
-            lblVeateade.Size = new Size(0, 15);
-            lblVeateade.TabIndex = 3;
+            // 
+            // btnRegistreeru
+            // 
+            resources.ApplyResources(btnRegistreeru, "btnRegistreeru");
             btnRegistreeru.BackColor = Color.White;
             btnRegistreeru.Cursor = Cursors.Hand;
             btnRegistreeru.ForeColor = Color.FromArgb(255, 128, 0);
-            btnRegistreeru.Location = new Point(30, 183);
             btnRegistreeru.Name = "btnRegistreeru";
-            btnRegistreeru.Size = new Size(240, 30);
-            btnRegistreeru.TabIndex = 5;
-            btnRegistreeru.Text = "Pole kontot? Registreeru";
             btnRegistreeru.UseVisualStyleBackColor = false;
             btnRegistreeru.Click += btnRegistreeru_Click;
+            // 
+            // pictureBox1
+            // 
+            resources.ApplyResources(pictureBox1, "pictureBox1");
             pictureBox1.BackgroundImage = Properties.Resources.waurma;
-            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.ErrorImage = null;
-            pictureBox1.ImageLocation = "Images\\waurma.png";
-            pictureBox1.InitialImage = null;
-            pictureBox1.Location = new Point(89, 245);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(119, 53);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 4;
             pictureBox1.TabStop = false;
+            // 
+            // LoginForm
+            // 
             AcceptButton = btnLogin;
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 192, 128);
-            ClientSize = new Size(300, 310);
             Controls.Add(pictureBox1);
             Controls.Add(lblEmail);
             Controls.Add(txtEmail);
@@ -101,8 +100,6 @@ namespace Tooted
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             Name = "LoginForm";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "WaurmaID";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

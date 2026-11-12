@@ -55,5 +55,15 @@ namespace Tooted
                 lblVeateade.Text = "";
             }
         }
+
+        private void lblParool_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEmail_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

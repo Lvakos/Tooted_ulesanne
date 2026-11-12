@@ -20,6 +20,7 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Peavorm));
             btnTooted = new Button();
             btnArve = new Button();
             pictureBox1 = new PictureBox();
@@ -29,67 +30,48 @@
             // 
             // btnTooted
             // 
+            resources.ApplyResources(btnTooted, "btnTooted");
             btnTooted.BackColor = Color.FromArgb(255, 128, 0);
-            btnTooted.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnTooted.ForeColor = SystemColors.ButtonHighlight;
-            btnTooted.Location = new Point(137, 71);
             btnTooted.Name = "btnTooted";
-            btnTooted.Size = new Size(200, 40);
-            btnTooted.TabIndex = 0;
-            btnTooted.Text = "Tootehaldus";
             btnTooted.UseVisualStyleBackColor = false;
             btnTooted.Click += btnTooted_Click;
             // 
             // btnArve
             // 
+            resources.ApplyResources(btnArve, "btnArve");
             btnArve.BackColor = Color.FromArgb(255, 128, 0);
-            btnArve.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnArve.ForeColor = SystemColors.ButtonHighlight;
-            btnArve.Location = new Point(137, 117);
             btnArve.Name = "btnArve";
-            btnArve.Size = new Size(200, 40);
-            btnArve.TabIndex = 2;
-            btnArve.Text = "Pood";
             btnArve.UseVisualStyleBackColor = false;
             btnArve.Click += btnArve_Click;
             // 
             // pictureBox1
             // 
+            resources.ApplyResources(pictureBox1, "pictureBox1");
             pictureBox1.BackgroundImage = Properties.Resources.waurma;
-            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.ErrorImage = null;
-            pictureBox1.ImageLocation = "Images\\waurma.png";
-            pictureBox1.InitialImage = null;
-            pictureBox1.Location = new Point(179, 12);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(119, 53);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
             // 
             // github
             // 
+            resources.ApplyResources(github, "github");
             github.BackColor = Color.White;
             github.BackgroundImage = Properties.Resources._25231;
-            github.BackgroundImageLayout = ImageLayout.Stretch;
             github.Cursor = Cursors.Hand;
-            github.Location = new Point(211, 217);
             github.Name = "github";
-            github.Size = new Size(53, 51);
-            github.TabIndex = 4;
             github.UseVisualStyleBackColor = false;
             github.Click += github_Click;
             // 
             // Peavorm
             // 
+            resources.ApplyResources(this, "$this");
             BackColor = Color.FromArgb(255, 192, 128);
-            ClientSize = new Size(493, 273);
             Controls.Add(github);
             Controls.Add(pictureBox1);
             Controls.Add(btnTooted);
             Controls.Add(btnArve);
             Name = "Peavorm";
-            Text = "Peamenüü";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }

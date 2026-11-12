@@ -519,5 +519,15 @@ namespace Tooted
             _db.Dispose();
             base.OnFormClosed(e);
         }
+
+        private void lblOstukorv_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblKokku_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
