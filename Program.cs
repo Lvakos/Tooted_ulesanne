@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
+using System.Threading;
 
 namespace Tooted
 {
@@ -7,8 +9,6 @@ namespace Tooted
         [STAThread]
         static void Main()
         {
-            ApplicationConfiguration.Initialize();
-
             try
             {
                 LooAndmebaasJaKasutajad();
