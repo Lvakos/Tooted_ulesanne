@@ -5,6 +5,12 @@
     <Compile Update="ArveForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Kasutajad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Update="Kasutajad.cs">
+      <SubType>Form</SubType>
+    </EmbeddedResource>
     <Compile Update="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -17,5 +23,13 @@
     <Compile Update="tooted.cs">
       <SubType>Form</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Kasutajad.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Kasutajad.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

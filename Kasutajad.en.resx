@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+	</resheader>
+
+	<data name="Title" xml:space="preserve"><value>User management</value></data>
+	<data name="Id" xml:space="preserve"><value>ID</value></data>
+	<data name="Nimi" xml:space="preserve"><value>Name</value></data>
+	<data name="Email" xml:space="preserve"><value>Email</value></data>
+	<data name="Roll" xml:space="preserve"><value>Role</value></data>
+	<data name="Password" xml:space="preserve"><value>New password</value></data>
+	<data name="PasswordHint" xml:space="preserve"><value>When editing, leave the password blank to keep it unchanged.</value></data>
+
+	<data name="Admin" xml:space="preserve"><value>Administrator</value></data>
+	<data name="User" xml:space="preserve"><value>User</value></data>
+
+	<data name="Clear" xml:space="preserve"><value>Clear</value></data>
+	<data name="Add" xml:space="preserve"><value>Add</value></data>
+	<data name="Update" xml:space="preserve"><value>Update</value></data>
+	<data name="Delete" xml:space="preserve"><value>Delete</value></data>
+
+	<data name="AdminOnly" xml:space="preserve"><value>Only an administrator can manage users.</value></data>
+	<data name="Error" xml:space="preserve"><value>The operation failed: {0}</value></data>
+	<data name="InvalidDetails" xml:space="preserve"><value>Enter a name and a valid email address.</value></data>
+	<data name="ShortPassword" xml:space="preserve"><value>The password must contain at least 6 characters.</value></data>
+	<data name="DuplicateEmail" xml:space="preserve"><value>A user with this email already exists.</value></data>
+	<data name="NotFound" xml:space="preserve"><value>User not found. The user list has been refreshed.</value></data>
+	<data name="OwnRole" xml:space="preserve"><value>You cannot remove your own administrator role.</value></data>
+	<data name="LastAdmin" xml:space="preserve"><value>The last administrator cannot be removed.</value></data>
+	<data name="SelectUser" xml:space="preserve"><value>Select a user in the table.</value></data>
+	<data name="OwnDelete" xml:space="preserve"><value>You cannot delete your own account.</value></data>
+	<data name="ConfirmDelete" xml:space="preserve"><value>Delete user “{0}” and their saved shopping cart?</value></data>
+</root>

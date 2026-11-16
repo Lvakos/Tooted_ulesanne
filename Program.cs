@@ -1,22 +1,45 @@
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace Tooted
 {
     internal static class Program
     {
+
+
         [STAThread]
         static void Main()
         {
+            string lang = Settings.Default.UserLanguage;
+
+            if (string.IsNullOrWhiteSpace(lang))
+                lang = "et-EE";
+
+            Thread.CurrentThread.CurrentUICulture =
+                new CultureInfo(lang);
+
+            Thread.CurrentThread.CurrentCulture =
+                new CultureInfo(lang);
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
             try
             {
                 LooAndmebaasJaKasutajad();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Andmebaasi viga: " + ex.Message +
-                    "\n\nKas tegid Add-Migration LisaKasutajad ja Update-Database?");
+                MessageBox.Show(
+                    "Andmebaasi viga: " + ex.Message +
+                    "\n\nKas tegid Add-Migration LisaKasutajad " +
+                    "ja Update-Database?"
+                );
+
                 return;
             }
 
@@ -32,6 +55,7 @@ namespace Tooted
         private static void LooAndmebaasJaKasutajad()
         {
             using var db = new ToodedContext();
+
             db.Database.Migrate();
 
             if (!db.Kasutajad.Any())

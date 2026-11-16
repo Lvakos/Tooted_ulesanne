@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+	</resheader>
+
+	<data name="Title" xml:space="preserve"><value>Kasutajate haldamine</value></data>
+	<data name="Id" xml:space="preserve"><value>ID</value></data>
+	<data name="Nimi" xml:space="preserve"><value>Nimi</value></data>
+	<data name="Email" xml:space="preserve"><value>E-mail</value></data>
+	<data name="Roll" xml:space="preserve"><value>Roll</value></data>
+	<data name="Password" xml:space="preserve"><value>Uus parool</value></data>
+	<data name="PasswordHint" xml:space="preserve"><value>Muutmisel jäta parool tühjaks, kui seda ei soovi muuta.</value></data>
+
+	<data name="Admin" xml:space="preserve"><value>Administraator</value></data>
+	<data name="User" xml:space="preserve"><value>Kasutaja</value></data>
+
+	<data name="Clear" xml:space="preserve"><value>Tühjenda</value></data>
+	<data name="Add" xml:space="preserve"><value>Lisa</value></data>
+	<data name="Update" xml:space="preserve"><value>Uuenda</value></data>
+	<data name="Delete" xml:space="preserve"><value>Kustuta</value></data>
+
+	<data name="AdminOnly" xml:space="preserve"><value>Ainult administraator saab kasutajaid hallata.</value></data>
+	<data name="Error" xml:space="preserve"><value>Toiming ebaõnnestus: {0}</value></data>
+	<data name="InvalidDetails" xml:space="preserve"><value>Sisesta nimi ja korrektne e-mail.</value></data>
+	<data name="ShortPassword" xml:space="preserve"><value>Parool peab olema vähemalt 6 märki.</value></data>
+	<data name="DuplicateEmail" xml:space="preserve"><value>Selle e-mailiga kasutaja on juba olemas.</value></data>
+	<data name="NotFound" xml:space="preserve"><value>Kasutajat ei leitud. Värskendati kasutajate nimekirja.</value></data>
+	<data name="OwnRole" xml:space="preserve"><value>Enda administraatori rolli ei saa eemaldada.</value></data>
+	<data name="LastAdmin" xml:space="preserve"><value>Viimast administraatorit ei saa eemaldada.</value></data>
+	<data name="SelectUser" xml:space="preserve"><value>Vali tabelist kasutaja.</value></data>
+	<data name="OwnDelete" xml:space="preserve"><value>Enda kontot ei saa kustutada.</value></data>
+	<data name="ConfirmDelete" xml:space="preserve"><value>Kas kustutada kasutaja „{0}” ja tema salvestatud ostukorv?</value></data>
+</root>
