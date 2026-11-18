@@ -354,8 +354,16 @@ namespace Tooted
             }
 
             string arveNr = DateTime.Now.ToString("yyyyMMdd-HHmmss");
-            Directory.CreateDirectory("Arved");
-            string pdfTee = Path.GetFullPath(Path.Combine("Arved", $"Arve_{arveNr}.pdf"));
+            string arvedKaust = Path.Combine(
+                Environment.GetFolderPath(
+                    Environment.SpecialFolder.LocalApplicationData),
+                "Tooted",
+                "Arved");
+
+            Directory.CreateDirectory(arvedKaust);
+
+            string pdfTee = Path.Combine(
+                arvedKaust, $"Arve_{arveNr}.pdf");
 
             try
             {

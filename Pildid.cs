@@ -10,13 +10,12 @@ namespace Tooted
         {
             get
             {
-                string projektiKaust = Path.GetFullPath(
-                    Path.Combine(AppContext.BaseDirectory, @"..\..\..\Images"));
+                string kaust = Path.Combine(
+                    Environment.GetFolderPath(
+                        Environment.SpecialFolder.LocalApplicationData),
+                    "Tooted",
+                    "Images");
 
-                if (Directory.Exists(projektiKaust))
-                    return projektiKaust;
-
-                string kaust = Path.Combine(AppContext.BaseDirectory, "Images");
                 Directory.CreateDirectory(kaust);
                 return kaust;
             }
